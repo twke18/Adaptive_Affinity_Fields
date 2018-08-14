@@ -3,7 +3,7 @@
 By [Tsung-Wei Ke*](https://www1.icsi.berkeley.edu/~twke/), Jyh-Jing Hwang*, [Ziwei Liu](https://liuziwei7.github.io/), 
 and [Stella X. Yu](http://www1.icsi.berkeley.edu/~stellayu/) (* equal contribution)
 
-<img src="misc/architecture.png" width="720">
+<img align="center" img src="misc/architecture.png" width="720">
 
 Semantic segmentation has made much progress with increasingly powerful pixel-wise classifiers and incorporating structural 
 priors via Conditional Random Fields (CRF) or Generative Adversarial Networks (GAN). We propose a simpler alternative that 
@@ -25,11 +25,12 @@ AAF is released under the MIT License (refer to the LICENSE file for details).
 If you use this code for your research, please cite our paper [Adaptive Affinity Fields for Semantic Segmentation](https://arxiv.org/abs/1803.10335).
 
 ```
-@article{aaf2018,
-  title={Adaptive Affinity Fields for Semantic Segmentation},
-  author={Tsung-Wei Ke*, Jyh-Jing Hwang*, Ziwei Liu, and Stella X. Yu.},
-  journal={ECCV},
-  year={2018}
+@inproceedings{aaf2018,
+ author = {Ke, Tsung-Wei and Hwang, Jyh-Jing and Liu, Ziwei and Yu, Stella X.},
+ title = {Adaptive Affinity Fields for Semantic Segmentation},
+ booktitle = {European Conference on Computer Vision (ECCV)},
+ month = {September},
+ year = {2018} 
 }
 ```
 
