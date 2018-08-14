@@ -1,4 +1,4 @@
-# Adaptive-Affinity-Field for Semantic Segmentation
+# Adaptive Affinity Fields for Semantic Segmentation
 
 By [Tsung-Wei Ke*](https://www1.icsi.berkeley.edu/~twke/), Jyh-Jing Hwang*, [Ziwei Liu](https://liuziwei7.github.io/), 
 and [Stella X. Yu](http://www1.icsi.berkeley.edu/~stellayu/) (* equal contribution)
