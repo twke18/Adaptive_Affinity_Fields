@@ -1,18 +1,31 @@
 #!/bin/bash
-# Training Parameters
+# This script is used for training, inference and benchmarking
+# the baseline method with PSPNet on PASCAL VOC 2012. Users could
+# also modify from this script for their use case.
+#
+# Usage:
+#   # From Adaptive_Affinity_Fields/ directory.
+#   bash bashscripts/voc12/train_pspnet.sh
+#
+#
+
+# Set up parameters for training.
 BATCH_SIZE=8
 TRAIN_INPUT_SIZE=336,336
 WEIGHT_DECAY=5e-4
 ITER_SIZE=1
 NUM_STEPS=30000
 NUM_CLASSES=21
-# Testing Parameters
+
+# Set up parameters for inference.
 TEST_INPUT_SIZE=480,480
 TEST_STRIDES=320,320
 TEST_SPLIT=val
-# saved model path
+
+# Set up path for saving models.
 SNAPSHOT_DIR=snapshots/voc12/pspnet/p336_bs8_lr1e-3_it30k
-# Procedure pipeline
+
+# Set up the procedure pipeline.
 IS_TRAIN_1=1
 IS_TEST_1=1
 IS_BENCHMARK_1=1
@@ -20,11 +33,13 @@ IS_TRAIN_2=1
 IS_TEST_2=1
 IS_BENCHMARK_2=1
 
+# Update PYTHONPATH.
 export PYTHONPATH=`pwd`:$PYTHONPATH
+
+# Set up the data directory.
 DATAROOT=/path/to/data
 
-
-# Stage1 Training
+# Train for the 1st stage.
 if [ ${IS_TRAIN_1} -eq 1 ]; then
   python3 pyscripts/train/train.py\
     --snapshot-dir ${SNAPSHOT_DIR}/stage1\
@@ -47,7 +62,7 @@ if [ ${IS_TRAIN_1} -eq 1 ]; then
     --is-training
 fi
 
-# Stage1 Testing
+# Inference for the 1st stage.
 if [ ${IS_TEST_1} -eq 1 ]; then
   python3 pyscripts/test/evaluate.py\
     --data-dir ${DATAROOT}/VOCdevkit/\
@@ -61,6 +76,7 @@ if [ ${IS_TEST_1} -eq 1 ]; then
     --save-dir ${SNAPSHOT_DIR}/stage1/results/${TEST_SPLIT}
 fi
 
+# Benchmark for the 1st stage.
 if [ ${IS_BENCHMARK_1} -eq 1 ]; then
   python3 pyscripts/utils/benchmark_by_mIoU.py\
     --pred-dir ${SNAPSHOT_DIR}/stage1/results/${TEST_SPLIT}/gray/\
@@ -68,7 +84,7 @@ if [ ${IS_BENCHMARK_1} -eq 1 ]; then
     --num-classes ${NUM_CLASSES}
 fi
 
-# Stage2 Training
+# Train for the 2nd stage.
 if [ ${IS_TRAIN_2} -eq 1 ]; then
   python3 pyscripts/train/train.py\
     --snapshot-dir ${SNAPSHOT_DIR}/stage2\
@@ -90,7 +106,7 @@ if [ ${IS_TRAIN_2} -eq 1 ]; then
     --is-training
 fi
 
-# Stage2 Testing
+# Inference for the 2nd stage.
 if [ ${IS_TEST_2} -eq 1 ]; then
   python3 pyscripts/test/evaluate_msc.py\
     --data-dir ${DATAROOT}/VOCdevkit/\
@@ -106,6 +122,7 @@ if [ ${IS_TEST_2} -eq 1 ]; then
     --save-dir ${SNAPSHOT_DIR}/stage2/results/${TEST_SPLIT}
 fi
 
+# Benchmark for the 2nd stage.
 if [ ${IS_BENCHMARK_2} -eq 1 ]; then
   python3 pyscripts/utils/benchmark_by_mIoU.py\
     --pred-dir ${SNAPSHOT_DIR}/stage2/results/${TEST_SPLIT}/gray/\
