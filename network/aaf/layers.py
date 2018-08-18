@@ -79,6 +79,7 @@ def eightcorner_activation(x, size):
 
   return output
 
+
 def ignores_from_label(labels, num_classes, size):
   """Retrieves ignorable pixels from the ground-truth labels.
 
@@ -144,6 +145,7 @@ def ignores_from_label(labels, num_classes, size):
   ignore = tf.concat(ignore_groups, axis=-1) #NxHxWx8
 
   return ignore
+
 
 def edges_from_label(labels, size, ignore_class=255):
   """Retrieves edge positions from the ground-truth labels.
