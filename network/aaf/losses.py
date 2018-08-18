@@ -1,6 +1,6 @@
 import tensorflow as tf
 
-import network.exps.layers as nnx
+import network.aaf.layers as nnx
 
 
 def affinity_loss(labels,

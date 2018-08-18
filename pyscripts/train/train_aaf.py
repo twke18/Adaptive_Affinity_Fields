@@ -12,7 +12,7 @@ from tqdm import tqdm
 from seg_models.models.pspnet import pspnet_resnet101 as model
 from seg_models.image_reader import ImageReader
 import network.common.layers as nn
-import network.exps.losses as lossx
+import network.aaf.losses as lossx
 import utils.general
 
 IMG_MEAN = np.array((122.675, 116.669, 104.008), dtype=np.float32)
