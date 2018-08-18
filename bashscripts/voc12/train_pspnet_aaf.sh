@@ -85,7 +85,7 @@ fi
 
 # Benchmark for the 1st stage.
 if [ ${IS_BENCHMARK_1} -eq 1 ]; then
-  python3 pyscripts/utils/benchmark_by_mIoU.py\
+  python3 pyscripts/benchmark/benchmark_by_mIoU.py\
     --pred-dir ${SNAPSHOT_DIR}/stage1/results/${INFERENCE_SPLIT}/gray/\
     --gt-dir ${DATAROOT}/VOCdevkit/VOC2012/segcls/\
     --num-classes ${NUM_CLASSES}
@@ -134,7 +134,7 @@ fi
 
 # Benchmark for the 2nd stage.
 if [ ${IS_BENCHMARK_2} -eq 1 ]; then
-  python3 pyscripts/utils/benchmark_by_mIoU.py\
+  python3 pyscripts/benchmark/benchmark_by_mIoU.py\
     --pred-dir ${SNAPSHOT_DIR}/stage2/results/${INFERENCE_SPLIT}/gray/\
     --gt-dir ${DATAROOT}/VOCdevkit/VOC2012/segcls/\
     --num-classes ${NUM_CLASSES}
