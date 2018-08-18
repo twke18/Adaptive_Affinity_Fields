@@ -27,6 +27,7 @@ def decode_labels(labels, num_classes=21):
 
   return outputs
 
+
 def inv_preprocess(imgs, img_mean):
   """Inverses image preprocessing of the input images. 
   
@@ -45,6 +46,7 @@ def inv_preprocess(imgs, img_mean):
     outputs[i] = (imgs[i] + img_mean).astype(np.uint8)
 
   return outputs
+
 
 def snapshot_arg(args):
   """Print and snapshots Command-Line arguments to a text file.
