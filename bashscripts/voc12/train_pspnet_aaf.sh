@@ -22,19 +22,19 @@ KLD_LAMBDA_1=1.0
 KLD_LAMBDA_2=1.0
 
 # Set up parameters for inference.
-TEST_INPUT_SIZE=480,480
-TEST_STRIDES=320,320
-TEST_SPLIT=val
+INFERENCE_INPUT_SIZE=480,480
+INFERENCE_STRIDES=320,320
+INFERENCE_SPLIT=val
 
 # Set up path for saving models.
 SNAPSHOT_DIR=snapshots/voc12/pspnet_aaf/p336_bs8_lr1e-3_berkld30_it30k
 
 # Set up the procedure pipeline.
 IS_TRAIN_1=1
-IS_TEST_1=1
+IS_INFERENCE_1=1
 IS_BENCHMARK_1=1
 IS_TRAIN_2=1
-IS_TEST_2=1
+IS_INFERENCE_2=1
 IS_BENCHMARK_2=1
 
 # Update PYTHONPATH.
@@ -70,23 +70,23 @@ if [ ${IS_TRAIN_1} -eq 1 ]; then
 fi
 
 # Inference for the 1st stage.
-if [ ${IS_TEST_1} -eq 1 ]; then
-  python3 pyscripts/test/evaluate.py\
+if [ ${IS_INFERENCE_1} -eq 1 ]; then
+  python3 pyscripts/inference/inference.py\
     --data-dir ${DATAROOT}/VOCdevkit/\
-    --data-list dataset/voc12/${TEST_SPLIT}.txt\
-    --input-size ${TEST_INPUT_SIZE}\
-    --strides ${TEST_STRIDES}\
+    --data-list dataset/voc12/${INFERENCE_SPLIT}.txt\
+    --input-size ${INFERENCE_INPUT_SIZE}\
+    --strides ${INFERENCE_STRIDES}\
     --restore-from ${SNAPSHOT_DIR}/stage1/model.ckpt-${NUM_STEPS}\
     --colormap misc/colormapvoc.mat\
     --num-classes ${NUM_CLASSES}\
     --ignore-label 255\
-    --save-dir ${SNAPSHOT_DIR}/stage1/results/${TEST_SPLIT}
+    --save-dir ${SNAPSHOT_DIR}/stage1/results/${INFERENCE_SPLIT}
 fi
 
 # Benchmark for the 1st stage.
 if [ ${IS_BENCHMARK_1} -eq 1 ]; then
   python3 pyscripts/utils/benchmark_by_mIoU.py\
-    --pred-dir ${SNAPSHOT_DIR}/stage1/results/${TEST_SPLIT}/gray/\
+    --pred-dir ${SNAPSHOT_DIR}/stage1/results/${INFERENCE_SPLIT}/gray/\
     --gt-dir ${DATAROOT}/VOCdevkit/VOC2012/segcls/\
     --num-classes ${NUM_CLASSES}
 fi
@@ -117,25 +117,25 @@ if [ ${IS_TRAIN_2} -eq 1 ]; then
 fi
 
 # Inference for the 2nd stage.
-if [ ${IS_TEST_2} -eq 1 ]; then
-  python3 pyscripts/test/evaluate_msc.py\
+if [ ${IS_INFERENCE_2} -eq 1 ]; then
+  python3 pyscripts/inference/inference_msc.py\
     --data-dir ${DATAROOT}/VOCdevkit/\
-    --data-list dataset/voc12/${TEST_SPLIT}.txt\
-    --input-size ${TEST_INPUT_SIZE}\
-    --strides ${TEST_STRIDES}\
+    --data-list dataset/voc12/${INFERENCE_SPLIT}.txt\
+    --input-size ${INFERENCE_INPUT_SIZE}\
+    --strides ${INFERENCE_STRIDES}\
     --restore-from ${SNAPSHOT_DIR}/stage2/model.ckpt-${NUM_STEPS}\
     --colormap misc/colormapvoc.mat\
     --num-classes ${NUM_CLASSES}\
     --ignore-label 255\
     --flip-aug\
     --scale-aug\
-    --save-dir ${SNAPSHOT_DIR}/stage2/results/${TEST_SPLIT}
+    --save-dir ${SNAPSHOT_DIR}/stage2/results/${INFERENCE_SPLIT}
 fi
 
 # Benchmark for the 2nd stage.
 if [ ${IS_BENCHMARK_2} -eq 1 ]; then
   python3 pyscripts/utils/benchmark_by_mIoU.py\
-    --pred-dir ${SNAPSHOT_DIR}/stage2/results/${TEST_SPLIT}/gray/\
+    --pred-dir ${SNAPSHOT_DIR}/stage2/results/${INFERENCE_SPLIT}/gray/\
     --gt-dir ${DATAROOT}/VOCdevkit/VOC2012/segcls/\
     --num-classes ${NUM_CLASSES}
 fi

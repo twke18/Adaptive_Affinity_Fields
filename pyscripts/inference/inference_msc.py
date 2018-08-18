@@ -25,7 +25,8 @@ def get_arguments():
   Returns:
     A list of parsed arguments.
   """
-  parser = argparse.ArgumentParser(description='Evaluate Semantic Segmentation.')
+  parser = argparse.ArgumentParser(
+      description='Inference of Semantic Segmentation.')
   parser.add_argument('--data-dir', type=str, default='',
                       help='/path/to/dataset.')
   parser.add_argument('--data-list', type=str, default='',
@@ -73,7 +74,7 @@ def parse_commastr(str_comma):
   return [a,b]
 
 def main():
-  """Create the model and start the evaluation process.
+  """Create the model and start the inference process.
   """
   args = get_arguments()
     
@@ -108,8 +109,10 @@ def main():
   is_flipped = []
   scales = [0.5, 0.75, 1, 1.25, 1.5, 1.75] if args.scale_aug else [1]
   for scale in scales:
-    h_new = tf.to_int32(tf.multiply(tf.to_float(tf.shape(image_batch)[1]), scale))
-    w_new = tf.to_int32(tf.multiply(tf.to_float(tf.shape(image_batch)[2]), scale))
+    h_new = tf.to_int32(
+        tf.multiply(tf.to_float(tf.shape(image_batch)[1]), scale))
+    w_new = tf.to_int32(
+        tf.multiply(tf.to_float(tf.shape(image_batch)[2]), scale))
     new_shape = tf.stack([h_new, w_new])
     new_image_batch = tf.image.resize_images(image_batch, new_shape)
     rescale_image_batches.append(new_image_batch)

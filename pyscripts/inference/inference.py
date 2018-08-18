@@ -24,7 +24,8 @@ def get_arguments():
   Returns:
     A list of parsed arguments.
   """
-  parser = argparse.ArgumentParser(description='Evaluate Semantic Segmentation')
+  parser = argparse.ArgumentParser(
+      description='Inference for Semantic Segmentation')
   parser.add_argument('--data-dir', type=str, default='',
                       help='/path/to/dataset.')
   parser.add_argument('--data-list', type=str, default='',
@@ -68,7 +69,7 @@ def parse_commastr(str_comma):
   return [a,b]
 
 def main():
-  """Create the model and start the evaluation process.
+  """Create the model and start the Inference process.
   """
   args = get_arguments()
     
