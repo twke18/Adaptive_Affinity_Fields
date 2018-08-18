@@ -11,8 +11,8 @@ import scipy.io
 import scipy.misc
 from PIL import Image
 
-from vocseg.models.pspnet import pspnet_resnet101 as model
-from vocseg.image_reader import ImageReader
+from seg_models.models.pspnet import pspnet_resnet101 as model
+from seg_models.image_reader import ImageReader
 import utils.general
 
 IMG_MEAN = np.array((122.675, 116.669, 104.008), dtype=np.float32)
