@@ -2,7 +2,8 @@ import tensorflow as tf
 
 
 def eightway_activation(x):
-  """Retrieves eight neighboring pixels/features from the center in a 3x3 patch.
+  """Retrieves neighboring pixels/features on the eight corners from
+  a 3x3 patch.
 
   Args:
     x: A tensor of size [batch_size, height_in, width_in, channels]
@@ -39,7 +40,7 @@ def eightway_activation(x):
 
 
 def eightcorner_activation(x, size):
-  """Retrieves eight corner pixels/features from the center in a
+  """Retrieves neighboring pixels one the eight corners from a
   (2*size+1)x(2*size+1) patch.
 
   Args:
@@ -81,11 +82,11 @@ def eightcorner_activation(x, size):
 def ignores_from_label(labels, num_classes, size):
   """Retrieves ignorable pixels from the ground-truth labels.
 
-  This function returns a binary map in which 1 denotes ignored pixels and 0
-  means not ignored ones. For those ignored pixels, they are not only the pixels
-  with label value >= num_classes, but also the paired pixels when computing
-  adaptive affinity field, usually the eight cornerl pixels from the center in 
-  a (2*size+1)x(2*size+1) patch.
+  This function returns a binary map in which 1 denotes ignored pixels
+  and 0 means not ignored ones. For those ignored pixels, they are not
+  only the pixels with label value >= num_classes, but also the
+  corresponding neighboring pixels, which are on the the eight cornerls
+  from a (2*size+1)x(2*size+1) patch.
   
   Args:
     labels: A tensor of size [batch_size, height_in, width_in], indicating 
@@ -147,10 +148,10 @@ def ignores_from_label(labels, num_classes, size):
 def edges_from_label(labels, size, ignore_class=255):
   """Retrieves edge positions from the ground-truth labels.
 
-  This function computes the edge map by considering if the pixel values are
-  equal between the center and its paired ones (usually the eight corner in
-  a patch). Ignore edges where the any of the paired pixels with label value
-  >= num_classes.
+  This function computes the edge map by considering if the pixel values
+  are equal between the center and the neighboring pixels on the eight
+  corners from a (2*size+1)*(2*size+1) patch. Ignore edges where the any
+  of the paired pixels with label value >= num_classes.
 
   Args:
     labels: A tensor of size [batch_size, height_in, width_in], indicating 

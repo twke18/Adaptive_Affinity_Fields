@@ -7,23 +7,23 @@ def affinity_loss(labels,
                   probs,
                   num_classes,
                   kld_margin):
-  """Affinity field (AFF) loss.
+  """Affinity Field (AFF) loss.
 
-  This function computes AFF loss. There are three components in the function:
+  This function computes AFF loss. There are several components in the
+  function:
   1) extracts edges from the ground-truth labels.
-  2) extracts ignored pixels and their paired pixels (usually the eight corner
-     pixels).
-  3) extracts eight corner pixels/predictions from the center in a
-     3x3 patch
-  4) computes KL-Divergence between center pixels and their paired pixels (the 
-     eight corner).
+  2) extracts ignored pixels and their paired pixels (the neighboring
+     pixels on the eight corners).
+  3) extracts neighboring pixels on the eight corners from a 3x3 patch.
+  4) computes KL-Divergence between center pixels and their neighboring
+     pixels from the eight corners.
 
   Args:
     labels: A tensor of size [batch_size, height_in, width_in], indicating 
       semantic segmentation ground-truth labels.
     probs: A tensor of size [batch_size, height_in, width_in, num_classes],
       indicating segmentation predictions.
-    num_classes: A number indicating the total number of valid classes. The 
+    num_classes: A number indicating the total number of valid classes.
     kld_margin: A number indicating the margin for KL-Divergence at edge.
 
   Returns:
