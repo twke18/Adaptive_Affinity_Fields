@@ -107,6 +107,7 @@ def crop_and_pad_image_and_labels(image,
 
   return img_crop, label_crop  
 
+
 def read_labeled_image_list(data_dir, data_list):
   """Reads txt file containing paths to images and ground truth masks.
     
@@ -130,6 +131,7 @@ def read_labeled_image_list(data_dir, data_list):
     images.append(data_dir + image)
     masks.append(data_dir + mask)
   return images, masks
+
 
 def read_images_from_disk(input_queue,
                           input_size,
@@ -183,6 +185,7 @@ def read_images_from_disk(input_queue,
 
   return img, label
 
+
 class ImageReader(object):
   """
   Generic ImageReader which reads images and corresponding
@@ -230,6 +233,7 @@ class ImageReader(object):
         random_crop,
         ignore_label,
         img_mean) 
+
 
   def dequeue(self, num_elements):
     """Packs images and labels into a batch.
