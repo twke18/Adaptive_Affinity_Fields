@@ -63,19 +63,19 @@ python pyscripts/train/train_aaf.py
 
 * Single-Scale Input only
 ```
-python pyscripts/test/evaluate.py
+python pyscripts/inference/inference.py
 ```
 
 * Multi-Scale Inputs and Left-Right Flipping (opencv is required)
 ```
-python pyscripts/test/evaluate_msc.py
+python pyscripts/inference/inference_msc.py
 ```
 
 ## Benchmarking
 
 * mIoU
 ```
-python pyscripts/utils/benchmark_by_mIoU.py
+python pyscripts/benchmark/benchmark_by_mIoU.py
 ```
 
 See our [bash script examples](/bashscripts/) for the corresponding input arguments.
