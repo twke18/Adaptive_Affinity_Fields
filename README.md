@@ -80,7 +80,7 @@ python pyscripts/benchmark/benchmark_by_mIoU.py
 
 See our [bash script examples](/bashscripts/) for the corresponding input arguments.
 
-### Citation
+## Citation
 If you find this code useful for your research, please consider citing our paper [Adaptive Affinity Fields for Semantic Segmentation](https://arxiv.org/abs/1803.10335).
 
 ```
@@ -93,5 +93,5 @@ If you find this code useful for your research, please consider citing our paper
 }
 ```
 
-### License
+## License
 AAF is released under the MIT License (refer to the LICENSE file for details).
