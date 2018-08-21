@@ -18,6 +18,8 @@ domains.
 
 AAF is published in ECCV 2018, see [our paper](https://arxiv.org/abs/1803.10335) for more details.
 
+<Note> SyncBN is releasing soon. Before that, you might not be able to reproduce our results on Cityscapes.
+
 ## Prerequisites
 
 1. Linux
