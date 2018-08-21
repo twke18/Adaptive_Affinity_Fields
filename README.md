@@ -18,9 +18,6 @@ domains.
 
 AAF is published in ECCV 2018, see [our paper](https://arxiv.org/abs/1803.10335) for more details.
 
-### License
-AAF is released under the MIT License (refer to the LICENSE file for details).
-
 ## Prerequisites
 
 1. Linux
@@ -95,3 +92,6 @@ If you find this code useful for your research, please consider citing our paper
  year = {2018} 
 }
 ```
+
+### License
+AAF is released under the MIT License (refer to the LICENSE file for details).
