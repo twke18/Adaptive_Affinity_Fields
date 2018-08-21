@@ -21,19 +21,6 @@ AAF is published in ECCV 2018, see [our paper](https://arxiv.org/abs/1803.10335)
 ### License
 AAF is released under the MIT License (refer to the LICENSE file for details).
 
-### Citation
-If you use this code for your research, please cite our paper [Adaptive Affinity Fields for Semantic Segmentation](https://arxiv.org/abs/1803.10335).
-
-```
-@inproceedings{aaf2018,
- author = {Ke, Tsung-Wei and Hwang, Jyh-Jing and Liu, Ziwei and Yu, Stella X.},
- title = {Adaptive Affinity Fields for Semantic Segmentation},
- booktitle = {European Conference on Computer Vision (ECCV)},
- month = {September},
- year = {2018} 
-}
-```
-
 ## Prerequisites
 
 1. Linux
@@ -95,3 +82,16 @@ python pyscripts/utils/benchmark_by_mIoU.py
 ```
 
 See our [bash script examples](/bashscripts/) for the corresponding input arguments.
+
+### Citation
+If you find this code useful for your research, please consider citing our paper [Adaptive Affinity Fields for Semantic Segmentation](https://arxiv.org/abs/1803.10335).
+
+```
+@inproceedings{aaf2018,
+ author = {Ke, Tsung-Wei and Hwang, Jyh-Jing and Liu, Ziwei and Yu, Stella X.},
+ title = {Adaptive Affinity Fields for Semantic Segmentation},
+ booktitle = {European Conference on Computer Vision (ECCV)},
+ month = {September},
+ year = {2018} 
+}
+```
