@@ -47,7 +47,7 @@ if [ ${IS_TRAIN_1} -eq 1 ]; then
     --data-list dataset/voc12/train+.txt\
     --data-dir ${DATAROOT}/VOCdevkit/\
     --batch-size ${BATCH_SIZE}\
-    --save-pred-every 10000\
+    --save-pred-every ${NUM_STEPS}\
     --update-tb-every 50\
     --input-size ${TRAIN_INPUT_SIZE}\
     --learning-rate 1e-3\
@@ -92,7 +92,7 @@ if [ ${IS_TRAIN_2} -eq 1 ]; then
     --data-list dataset/voc12/train.txt\
     --data-dir ${DATAROOT}/VOCdevkit/\
     --batch-size ${BATCH_SIZE}\
-    --save-pred-every 10000\
+    --save-pred-every ${NUM_STEPS}\
     --update-tb-every 50\
     --input-size ${TRAIN_INPUT_SIZE}\
     --learning-rate 1e-4\
@@ -108,7 +108,7 @@ fi
 
 # Inference for the 2nd stage.
 if [ ${IS_INFERENCE_2} -eq 1 ]; then
-  python3 pyscripts/inference/inferenec_msc.py\
+  python3 pyscripts/inference/inference_msc.py\
     --data-dir ${DATAROOT}/VOCdevkit/\
     --data-list dataset/voc12/${INFERENCE_SPLIT}.txt\
     --input-size ${INFERENCE_INPUT_SIZE}\

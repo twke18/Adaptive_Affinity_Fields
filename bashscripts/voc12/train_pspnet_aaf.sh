@@ -27,7 +27,7 @@ INFERENCE_STRIDES=320,320
 INFERENCE_SPLIT=val
 
 # Set up path for saving models.
-SNAPSHOT_DIR=snapshots/voc12/pspnet_aaf/p336_bs8_lr1e-3_berkld30_it30k
+SNAPSHOT_DIR=snapshots/voc12/pspnet_aaf/p336_bs8_lr1e-3_kld3e0_it30k
 
 # Set up the procedure pipeline.
 IS_TRAIN_1=1

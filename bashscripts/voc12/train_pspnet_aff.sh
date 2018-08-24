@@ -50,7 +50,7 @@ if [ ${IS_TRAIN_1} -eq 1 ]; then
     --data-list dataset/voc12/train+.txt\
     --data-dir ${DATAROOT}/VOCdevkit/\
     --batch-size ${BATCH_SIZE}\
-    --save-pred-every 10000\
+    --save-pred-every ${NUM_STEPS}\
     --update-tb-every 50\
     --input-size ${TRAIN_INPUT_SIZE}\
     --learning-rate 1e-3\
@@ -86,7 +86,7 @@ fi
 if [ ${IS_BENCHMARK_1} -eq 1 ]; then
   python3 pyscripts/benchmark/benchmark_by_mIoU.py\
     --pred-dir ${SNAPSHOT_DIR}/stage1/results/${INFERENCE_SPLIT}/gray/\
-    --gt-dir ${HOME}/data/VOCdevkit/VOC2012/segcls/\
+    --gt-dir ${DATAROOT}/VOCdevkit/VOC2012/segcls/\
     --num-classes ${NUM_CLASSES}
 fi
 
@@ -98,7 +98,7 @@ if [ ${IS_TRAIN_2} -eq 1 ]; then
     --data-list dataset/voc12/train.txt\
     --data-dir ${DATAROOT}/VOCdevkit/\
     --batch-size ${BATCH_SIZE}\
-    --save-pred-every 10000\
+    --save-pred-every ${NUM_STEPS}\
     --update-tb-every 50\
     --input-size ${TRAIN_INPUT_SIZE}\
     --learning-rate 1e-4\
@@ -135,6 +135,6 @@ fi
 if [ ${IS_BENCHMARK_2} -eq 1 ]; then
   python3 pyscripts/benchmark/benchmark_by_mIoU.py\
     --pred-dir ${SNAPSHOT_DIR}/stage2/results/${INFERENCE_SPLIT}/gray/\
-    --gt-dir ${HOME}/data/VOCdevkit/VOC2012/segcls/\
+    --gt-dir ${DATAROOT}/VOCdevkit/VOC2012/segcls/\
     --num-classes ${NUM_CLASSES}
 fi
