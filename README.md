@@ -18,8 +18,6 @@ domains.
 
 AAF is published in ECCV 2018, see [our paper](https://arxiv.org/abs/1803.10335) for more details.
 
-Note: SyncBN is releasing soon. Before that, you might not be able to reproduce our results on Cityscapes.
-
 ## Prerequisites
 
 1. Linux
@@ -51,14 +49,29 @@ Download ResNet101.v1 from [Tensorflow-Slim](https://github.com/tensorflow/model
 python pyscripts/train/train.py
 ```
 
+* Baseline Models (Multi-GPUs):
+```
+python pyscripts/train/train_mgpu.py
+```
+
 * Affinity
 ```
-python pyscripts/train/train_aff.py
+python pyscripts/train/train_affinity.py
+```
+
+* Affinity (Multi-GPUs)
+```
+python pyscripts/train/train_affinity_mgpu.py
 ```
 
 * AAF
 ```
 python pyscripts/train/train_aaf.py
+```
+
+* AAF (Multi-GPUs)
+```
+python pyscripts/train/train_aaf_mgpu.py
 ```
 
 ## Inference
@@ -78,6 +91,11 @@ python pyscripts/inference/inference_msc.py
 * mIoU
 ```
 python pyscripts/benchmark/benchmark_by_mIoU.py
+```
+
+* instance-wise mIoU
+```
+python pyscripts/benchmark/benchmark_by_instance.py
 ```
 
 See our [bash script examples](/bashscripts/) for the corresponding input arguments.
