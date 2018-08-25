@@ -6,7 +6,7 @@
 #
 # Usage:
 #   # From Adaptive_Affinity_Fields/ directory.
-#   bash bashscripts/cityscapes/train_pspnet_aff_mgpu.sh
+#   bash bashscripts/cityscapes/train_pspnet_affinity_mgpu.sh
 #
 #
 
@@ -28,7 +28,7 @@ INFERENCE_STRIDES=480,480
 INFERENCE_SPLIT=val
 
 # Set up path for saving models.
-SNAPSHOT_DIR=snapshots/cityscapes/pspnet_aff/p720_bs8_lr1e-3_kld3e0_it90k
+SNAPSHOT_DIR=snapshots/cityscapes/pspnet_affinity/p720_bs8_lr1e-3_kld3e0_it90k
 
 # Set up the procedure pipeline.
 IS_TRAIN=1
@@ -43,7 +43,7 @@ DATAROOT=/path/to/data
 
 # Train.
 if [ ${IS_TRAIN} -eq 1 ]; then
-  python3 pyscripts/train/train_aff_mgpu.py\
+  python3 pyscripts/train/train_affinity_mgpu.py\
     --snapshot-dir ${SNAPSHOT_DIR}\
     --restore-from snapshots/imagenet/trained/resnet_v1_101.ckpt\
     --data-list dataset/cityscapes/train.txt\

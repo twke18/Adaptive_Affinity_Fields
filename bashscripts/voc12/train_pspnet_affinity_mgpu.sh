@@ -6,7 +6,7 @@
 #
 # Usage:
 #   # From Adaptive_Affinity_Fields/ directory.
-#   bash bashscripts/voc12/train_pspnet_aff_mgpu.sh
+#   bash bashscripts/voc12/train_pspnet_affinity_mgpu.sh
 #
 #
 
@@ -28,7 +28,7 @@ INFERENCE_STRIDES=320,320
 INFERENCE_SPLIT=val
 
 # Set up path for saving models.
-SNAPSHOT_DIR=snapshots/voc12/pspnet_aff/p480_bs16_lr1e-3_kld3e0_it30k
+SNAPSHOT_DIR=snapshots/voc12/pspnet_affinity/p480_bs16_lr1e-3_kld3e0_it30k
 
 # Set up the procedure pipeline.
 IS_TRAIN_1=1
@@ -46,7 +46,7 @@ DATAROOT=/path/to/data
 
 # Train for the 1st stage.
 if [ ${IS_TRAIN_1} -eq 1 ]; then
-  python3 pyscripts/train/train_aff_mgpu.py\
+  python3 pyscripts/train/train_affinity_mgpu.py\
     --snapshot-dir ${SNAPSHOT_DIR}/stage1\
     --restore-from snapshots/imagenet/trained/resnet_v1_101.ckpt\
     --data-list dataset/voc12/train+.txt\
@@ -95,7 +95,7 @@ fi
 
 # Train for the 2nd stage.
 if [ ${IS_TRAIN_2} -eq 1 ]; then
-  python3 pyscripts/train/train_aff_mgpu.py\
+  python3 pyscripts/train/train_affinity_mgpu.py\
     --snapshot-dir ${SNAPSHOT_DIR}/stage2\
     --restore-from ${SNAPSHOT_DIR}/stage1/model.ckpt-30000\
     --data-list dataset/voc12/train.txt\
