@@ -9,8 +9,8 @@ import tensorflow as tf
 import numpy as np
 from tqdm import tqdm
 
-from vocseg.models.pspnet_mgpu import pspnet_resnet101 as model
-from vocseg.image_reader import ImageReader
+from seg_models.models.pspnet_mgpu import pspnet_resnet101 as model
+from seg_models.image_reader import ImageReader
 import network.multigpu.layers as nn_mgpu
 import network.exps.losses as lossx
 import utils.general
